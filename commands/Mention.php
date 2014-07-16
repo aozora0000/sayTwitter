@@ -1,8 +1,8 @@
 <?php
 	class Mention extends TwitterAPI {
 		public function get() {
-			$reqestJson = $this->twitter->OAuthRequest(self::MENTION_TIMELINE_TO_JSON,"GET",array("count"=>COUNT,"include_rts"=>false));
-			$requestObj = json_decode($reqestJson);
+			$requestJson = $this->twitter->OAuthRequest(self::MENTION_TIMELINE_TO_JSON,"GET",array("count"=>COUNT,"include_rts"=>false));
+			$requestObj = json_decode($requestJson);
 			$flag = FALSE;
 			if($requestObj) {
 				$tweetObjs = self::parseTimelineOrderASC($requestObj);

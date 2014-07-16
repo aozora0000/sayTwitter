@@ -4,6 +4,7 @@
 		public $config;
 		public $setting;
 		public $lasttweet_id = 0;
+		CONST RATE_LIMIT_STATUS_TO_JSON = "https://api.twitter.com/1.1/application/rate_limit_status.json";
 		CONST HOME_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/user_timeline.json";
 		CONST USER_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/user_timeline.json";
 		CONST MENTION_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/mentions_timeline.json";
@@ -13,13 +14,19 @@
 			include 'Terminal.php';
 			$this->config = $config;
 			$this->setting = $setting;
+
 			$this->connect();
+			$resources = $this->getRateLimit();
+
 			$user = (isset($this->setting['user'])) ? $this->setting['user'] : ($this->setting['action'] !== "Hash") ? '自分' : "Hashtag: {$this->setting['filter']} ";
 			$action = $this->setting['action'];
 			$delay = $this->setting['delay'];
 
 			print '[ctrl+c]escape'.PHP_EOL;
 			print "----------- {$action} {$user}のツイート [delay: {$delay}s]-------------".PHP_EOL;
+			foreach($resources as $key=>$resource) {
+				printf("----- %6s: %s -----\n",$key,$resource);
+			}
 		}
 
 		public function connect() {
@@ -28,6 +35,27 @@
 			} catch (OAuthException $e) {
 				var_dump($e->getMessage());
 			}
+		}
+
+		public function getRateLimit() {
+			$requestJson = $this->twitter->OAuthRequest(self::RATE_LIMIT_STATUS_TO_JSON,"GET",array("resources"=>"search,statuses"));
+			$requestObj = json_decode($requestJson);
+
+			$mention = $requestObj->resources->statuses->{'/statuses/mentions_timeline'};
+			$home    = $requestObj->resources->statuses->{'/statuses/home_timeline'};
+			$user    = $requestObj->resources->statuses->{'/statuses/user_timeline'};
+			$search  = $requestObj->resources->search->{'/search/tweets'};
+
+			return (object)array(
+				'mention'=>self::parseLimit($mention),
+				'user'=>self::parseLimit($user),
+				'home'=>self::parseLimit($home),
+				'search'=>self::parseLimit($search)
+			);
+		}
+
+		static function parseLimit($object) {
+			return sprintf("%3d/%3d nextResetDate: %s",$object->remaining,$object->limit,date("Y-m-d H:i:s",$object->reset));
 		}
 
 		static function parseTimeline($tweet) {

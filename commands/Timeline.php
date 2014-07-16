@@ -1,8 +1,9 @@
 <?php
 	class Timeline extends TwitterAPI {
 		public function get() {
-			$reqestJson = $this->twitter->OAuthRequest(self::HOME_TIMELINE_TO_JSON,"GET",array("count"=>COUNT,"include_rts"=>false));
-			$requestObj = json_decode($reqestJson);
+			$requestJson = $this->twitter->OAuthRequest(self::HOME_TIMELINE_TO_JSON,"GET",array("count"=>COUNT,"include_rts"=>false));
+			file_put_contents("file.txt",$requestJson);
+			$requestObj = json_decode($requestJson);
 			$flag = FALSE;
 			if($requestObj) {
 				$tweetObjs = self::parseTimelineOrderASC($requestObj);

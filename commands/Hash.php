@@ -1,7 +1,7 @@
 <?php
 	class Hash extends TwitterAPI {
 		public function get() {
-			$reqestJson = $this->twitter->OAuthRequest(self::HASH_TIMELINE_TO_JSON,"GET",array("count"=>COUNT,"include_rts"=>false,"q"=>$this->setting['filter']));
+			$requestJson = $this->twitter->OAuthRequest(self::HASH_TIMELINE_TO_JSON,"GET",array("count"=>COUNT,"include_rts"=>false,"q"=>$this->setting['filter']));
 			$requestObj = json_decode($reqestJson);
 			$flag = FALSE;
 			if($requestObj) {
