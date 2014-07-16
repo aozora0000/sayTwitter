@@ -14,7 +14,7 @@
 			$this->config = $config;
 			$this->setting = $setting;
 			$this->connect();
-			$user = (isset($this->setting['user'])) ? $this->setting['user'] : ($this->setting['action'] !== "Hash") ? '自分' : "Hashtag: #{$this->setting['filter']} ";
+			$user = (isset($this->setting['user'])) ? $this->setting['user'] : ($this->setting['action'] !== "Hash") ? '自分' : "Hashtag: {$this->setting['filter']} ";
 			$action = $this->setting['action'];
 			$delay = $this->setting['delay'];
 
