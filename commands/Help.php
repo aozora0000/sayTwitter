@@ -23,7 +23,9 @@ howto           :
 ディレイに関してはTwitterAPI上の仕様により、15分間のリクエスト数が決まっています。
 大体のリクエストに関しては15req/minutesになっているようです。
 
-config.iniのKey/Secretを取得・配置してから実行してください。
+config.ini.sampleをconfig.iniにリネーム。
+Key/Secretを取得・配置してから実行してください。
+
 Key取得先URL: https://dev.twitter.com/
 
 ★ Caution ★
