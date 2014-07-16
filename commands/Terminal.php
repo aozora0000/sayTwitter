@@ -1,9 +1,9 @@
 <?php
 	class Terminal {
 		public static function Say($user,$text,$sleep = 0.5) {
-			exec("say '{$user}さんのツイート'");
+			exec("say -r 240 '{$user}さんのツイート'");
 			exec("sleep {$sleep}");
-			exec("say '{$text}'");
+			exec("say -r 240 '{$text}'");
 			usleep(SAY_INTERVAL);
 		}
 

@@ -5,7 +5,7 @@
 		public $setting;
 		public $lasttweet_id = 0;
 		CONST RATE_LIMIT_STATUS_TO_JSON = "https://api.twitter.com/1.1/application/rate_limit_status.json";
-		CONST HOME_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/user_timeline.json";
+		CONST HOME_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/home_timeline.json";
 		CONST USER_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/user_timeline.json";
 		CONST MENTION_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/mentions_timeline.json";
 		CONST HASH_TIMELINE_TO_JSON		= "https://api.twitter.com/1.1/search/tweets.json";
@@ -25,7 +25,7 @@
 			print '[ctrl+c]escape'.PHP_EOL;
 			print "----------- {$action} {$user}のツイート [delay: {$delay}s]-------------".PHP_EOL;
 			foreach($resources as $key=>$resource) {
-				printf("----- %6s: %s -----\n",$key,$resource);
+				printf("----- %8s: %s -----\n",$key,$resource);
 			}
 		}
 

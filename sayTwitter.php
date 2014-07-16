@@ -10,8 +10,8 @@
 	define('CMD_DIR',ROOT_DIR.'commands'.DS);
 	define('CONFIG_INI',ROOT_DIR.'config.ini');
 	define('DEFAULT_DELAY',60);
-	define('SAY_INTERVAL',2000);
-	define('COUNT',10);
+	define('SAY_INTERVAL',3000);
+	define('COUNT',30);
 
 	//スクリプト呼び出し
 	require_once(OAUTH_DIR.'twitteroauth.php');
