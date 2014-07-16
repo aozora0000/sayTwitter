@@ -4,7 +4,7 @@
             print <<< EOM
 
 script          :        sayTwitter
-version         :        0.0.9
+version         :        0.1.0
 auther          :        J山B作(@aozora0000)
 special thanks  :        https://github.com/abraham/twitteroauth (TwitterAPI1.1 Oauth&RESTAPI Liblaries)
 howto           :
@@ -13,8 +13,7 @@ howto           :
     [none]                          引数無しで自タイムライン表示
     -t"[user_id]"                   タイムライン表示(デフォルトで自タイムライン)
     -m                              メンション表示
-    -f                              (未実装)フィルター
-    -hash="#example1,#example2"     (未実装)ハッシュタグ表示
+    -hash="example"                 ハッシュタグ表示
 
 その他オプション
     -h                              へるぷ表示

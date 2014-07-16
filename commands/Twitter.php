@@ -7,13 +7,14 @@
 		CONST HOME_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/user_timeline.json";
 		CONST USER_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/user_timeline.json";
 		CONST MENTION_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/mentions_timeline.json";
+		CONST HASH_TIMELINE_TO_JSON		= "https://api.twitter.com/1.1/search/tweets.json";
 
 		public function __construct($setting,$config) {
 			include 'Terminal.php';
 			$this->config = $config;
 			$this->setting = $setting;
 			$this->connect();
-			$user = (isset($this->setting['user'])) ? $this->setting['user'] : '自分';
+			$user = (isset($this->setting['user'])) ? $this->setting['user'] : ($this->setting['action'] !== "Hash") ? '自分' : "Hashtag: #{$this->setting['filter']} ";
 			$action = $this->setting['action'];
 			$delay = $this->setting['delay'];
 

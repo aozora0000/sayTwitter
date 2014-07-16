@@ -35,6 +35,12 @@
 					'filter'=>(isset($option['f'])) ? $option['f'] : NULL,
 					'delay'=>(isset($option['d'])) ? $option['d'] : DEFAULT_DELAY
 				);
+			} elseif(isset($option['h'])) {
+				return array(
+					'action'=>'Hash',
+					'filter'=>($option['h'] !== '') ? $option['h'] : NULL,
+					'delay'=>(isset($option['d'])) ? $option['d'] : DEFAULT_DELAY
+				);
 			} else { //ヘルプ表示
 				return array(
 					'action'=>'Help',
