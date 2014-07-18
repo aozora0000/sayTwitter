@@ -1,7 +1,7 @@
 <?php
 	class Timeline extends TwitterAPI {
 		public function get() {
-			$requestJson = $this->twitter->OAuthRequest(self::HOME_TIMELINE_TO_JSON,"GET",array("count"=>COUNT,"include_rts"=>false));
+			$requestJson = $this->getRequest(self::HOME_TIMELINE_TO_JSON,"GET",array("count"=>COUNT,"include_rts"=>false));
 			$requestObj = json_decode($requestJson);
 			$flag = FALSE;
 			if($requestObj) {

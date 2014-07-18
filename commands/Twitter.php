@@ -30,16 +30,12 @@
 		}
 
 		public function connect() {
-			try {
-				$this->twitter = new TwitterOAuth($this->config->consumerKey,$this->config->consumerSecret,$this->config->accessToken,$this->config->accessTokenSecret);
-			} catch (Exception $e) {
-
-				var_dump($e);exit;$e->getMessage();
-			}
+			$this->twitter = new TwitterOAuth($this->config->consumerKey,$this->config->consumerSecret,$this->config->accessToken,$this->config->accessTokenSecret);
 		}
 
 		public function getRateLimit() {
-			$requestJson = $this->twitter->OAuthRequest(self::RATE_LIMIT_STATUS_TO_JSON,"GET",array("resources"=>"search,statuses"));
+
+			$requestJson = $this->getRequest(self::RATE_LIMIT_STATUS_TO_JSON,"GET",array("resources"=>"search,statuses"));
 			$requestObj = json_decode($requestJson);
 
 			$mention = $requestObj->resources->statuses->{'/statuses/mentions_timeline'};
@@ -53,6 +49,16 @@
 				'home'=>self::parseLimit($home),
 				'search'=>self::parseLimit($search)
 			);
+		}
+
+		public function getRequest($url,$method,$query) {
+			try {
+				return $this->twitter->OAuthRequest($url,$method,$query);
+			} catch (Exception $e) {
+				print "エラー発生！処理を終了します。\n";
+				print $e->getMessage().PHP_EOL;exit;
+			}
+			
 		}
 
 		static function parseLimit($object) {
