@@ -22,18 +22,19 @@
 			$action = $this->setting['action'];
 			$delay = $this->setting['delay'];
 
-			print '[ctrl+c]escape'.PHP_EOL;
-			print "----------- {$action} {$user}のツイート [delay: {$delay}s]-------------".PHP_EOL;
+			Terminal::Put('[ctrl+c]escape');
+			Terminal::Put("------------ {$action} {$user}のツイート [delay: {$delay}s] --------------");
 			foreach($resources as $key=>$resource) {
-				printf("----- %8s: %s -----\n",$key,$resource);
+				Terminal::Put(sprintf("----- %8s: %s -----",$key,$resource));
 			}
 		}
 
 		public function connect() {
 			try {
 				$this->twitter = new TwitterOAuth($this->config->consumerKey,$this->config->consumerSecret,$this->config->accessToken,$this->config->accessTokenSecret);
-			} catch (OAuthException $e) {
-				var_dump($e->getMessage());
+			} catch (Exception $e) {
+
+				var_dump($e);exit;$e->getMessage();
 			}
 		}
 
@@ -68,11 +69,24 @@
 		}
 
 		static function toString($text) {
-			$text = str_replace(array("'","\"","`"),"",$text);
-			$text = preg_replace('|https?://[\w/:%#\$&\?\(\)~\.=\+\-]+|i','',$text);
-			$text = str_replace(array("\r\n","\r","\n"),' ',$text);
+			$replace_needle = array(
+				"'","\"","`",
+				"\r\n","\r","\n",
+				"-"
+			);
+			$text = str_replace($replace_needle,"",$text);
+			$text = self::urlEraser($text);
+			$text = self::wwwEraser($text);
 			$text = trim($text);
 			return $text;
+		}
+
+		static function wwwEraser($string) {
+			return preg_replace("/(w|ｗ)+/","w",$string);
+		}
+
+		static function urlEraser($string) {
+			return preg_replace('|https?://[\w/:%#\$&\?\(\)~\.=\+\-]+|i','',$string);
 		}
 
 		static function parseTimelineOrderASC($requestObj) {

@@ -15,4 +15,8 @@
 		public static function Put($string) {
 			print $string.PHP_EOL;
 		}
+
+		public static function LoadingBar($second) {
+			
+		}
 	}
