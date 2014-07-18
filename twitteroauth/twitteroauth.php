@@ -228,15 +228,20 @@ class TwitterOAuth {
       case 200: //正常動作
         return $response;
         break;
+
       case 400: //認証失敗
         throw new Exception("APIログインエラー！Twitterから配布されたKey/Tokenを利用して下さい。");
         break;
+
+      case 0:
       case 404: //ネット不通
         throw new Exception("URLが存在しません！恐らくTwitter社の陰謀、若しくはインターネットに繋がっていないだけです。");
         break;
+
       case 429:  // API制限エラー
         throw new Exception("API制限超過エラー！暫く待って制限解除されてからご利用下さい。");
         break;
+        
       default:
         throw new Exception("何らかの理由によりエラーが出ています。暫く待って利用し、それでもダメならお祓いに行って下さい。");
         break;
