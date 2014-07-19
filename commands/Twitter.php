@@ -30,7 +30,10 @@
 			foreach($resources as $key=>$resource) {
 				Terminal::Put(sprintf("----- %8s: %s -----",$key,$resource));
 			}
+			$this->preprocess();
 		}
+
+		public function preprocess() { }
 
 		public function connect() {
 			$this->twitter = new TwitterOAuth($this->config->consumerKey,$this->config->consumerSecret,$this->config->accessToken,$this->config->accessTokenSecret);
