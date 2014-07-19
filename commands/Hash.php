@@ -7,12 +7,14 @@
 			if($requestObj) {
 				$tweetObjs = self::parseTimelineOrderASC($requestObj->statuses);
 				foreach($tweetObjs as $tweet) {
-					if($this->lasttweet_id < $tweet->id) {
-						$this->lasttweet_id = $tweet->id;
-						Terminal::Put("{$tweet->user} : {$tweet->text}   [{$tweet->timestamp}]");
-						Terminal::Say($tweet->user,$tweet->text);
-					} else {
-						$flag = TRUE;
+					if(!$tweet->retweet && !$tweet->is_replay) {
+						if($this->lasttweet_id < $tweet->id) {
+							$this->lasttweet_id = $tweet->id;
+							Terminal::Put("{$tweet->user} : {$tweet->text}   [{$tweet->timestamp}]");
+							Terminal::Say($tweet->user,$tweet->text);
+						} else {
+							$flag = TRUE;
+						}
 					}
 				}
 				if($flag) {

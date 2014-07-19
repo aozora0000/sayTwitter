@@ -8,7 +8,7 @@
 		}
 
 		public static function Mes($text) {
-			exec("say '{$text}'");
+			exec("say -r 240 '{$text}'");
 			usleep(SAY_INTERVAL);
 		}
 
@@ -24,6 +24,34 @@
 					exit("終了します。\n");
 				}
 				if((preg_match("/^[0-9]+$/",$line) && (0 < $line && $line <= 10))) {
+					return $line;
+					break;
+				}
+			}
+		}
+
+		public static function getStdInNumeric($string) {
+			while(true) {
+				self::Put($string);
+				$line = trim(fgets(STDIN));
+				if($line === "q") {
+					exit("終了します。\n");
+				}
+				if(preg_match("/^[0-9]+$/",$line) && 0 < $line) {
+					return $line;
+					break;
+				}
+			}
+		}
+
+		public static function getStdInFloat($string) {
+			while(true) {
+				self::Put($string);
+				$line = trim(fgets(STDIN));
+				if($line === "q") {
+					exit("終了します。\n");
+				}
+				if(preg_match("/^[0-9\.]+$/",$line)) {
 					return $line;
 					break;
 				}

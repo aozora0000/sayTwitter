@@ -47,6 +47,12 @@
 					'filter'=>NULL,
 					'delay'=>(isset($option['d'])) ? $option['d'] : DEFAULT_DELAY
 				];
+			} elseif(self::margenalOption('l','location',$option)) {
+				return [
+					'action'=>'Location',
+					'filter'=>NULL,
+					'delay'=>(isset($option['d'])) ? $option['d'] : DEFAULT_DELAY
+				];
 			} else { //ヘルプ表示
 				return array(
 					'action'=>'Help',

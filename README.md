@@ -1,10 +1,15 @@
 # sayTwitter
-- script:        sayTwitter
-- version         :        0.1.1
+- script:         :        sayTwitter
+- version         :        0.1.2
 - auther          :        J山B作(@aozora0000)
 - special thanks  :        [twitteroauth](https://github.com/abraham/twitteroauth)
 
 ## 更新履歴
+
+### 2014-07-20
+- 位置情報検索機能追加
+- ハッシュ検索・位置情報検索でリツイート・リプライの表示を除外しました。
+- 非公式RTには未対応
 
 ### 2014-07-19
 - ハッシュ検索が機能していなかった問題を解消
@@ -26,6 +31,7 @@
     -m                または --mention               メンション表示
     -h="#example"     または --hash="#example"       ハッシュタグ表示
     -t                または --trend                 トレンド選択表示
+    -l                または --location              位置情報検索表示
 ```
 ### その他オプション
 ```

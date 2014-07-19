@@ -28,10 +28,11 @@
 	 *	-m --mention						メンション表示
 	 *  -h[hash] --hash[hash]				ハッシュ検索
 	 * 	-t --trend							トレンド
+	 *  -l --location 						位置からツイート検索
 	 * 	-d[second] 							ディレイ設定(デフォルトで60秒)
 	 */
 
-	$opt = getopt('u::m::f::d::h::H::t::',array('help::','user::','mention::','hash::','trend::'));
+	$opt = getopt('u::m::f::d::h::H::t::l::',array('help::','user::','mention::','hash::','trend::','location::'));
 
 	$INST = new Commands($opt,$config);
 	$INST->execute();
