@@ -4,20 +4,21 @@
             print <<< EOM
 
 script          :        sayTwitter
-version         :        0.1.0
+version         :        0.1.1
 auther          :        J山B作(@aozora0000)
 special thanks  :        https://github.com/abraham/twitteroauth (TwitterAPI1.1 Oauth&RESTAPI Liblaries)
 howto           :
 
 主要オプション
-    [none]                          引数無しで自タイムライン表示
-    -t"[user_id]"                   タイムライン表示(デフォルトで自タイムライン)
-    -m                              メンション表示
-    -hash="#example"                ハッシュタグ表示
+    [none]                                           引数無しで自タイムライン表示
+    -u[user_id]       または --user=[user_id]        タイムライン表示(デフォルトで自タイムライン)
+    -m                または --mention               メンション表示
+    -h="#example"     または --hash="#example"       ハッシュタグ表示
+    -t                または --trend                 トレンド選択表示
 
 その他オプション
-    -h                              へるぷ表示
-    -d[second]                      ディレイ設定(デフォルトで60秒)
+    --help                                           へるぷ表示
+    -d[second]                                       ディレイ設定(デフォルトで60秒)
 
 ディレイに関してはTwitterAPI上の仕様により、15分間のリクエスト数が決まっています。
 大体のリクエストに関しては15req/minutesになっているようです。

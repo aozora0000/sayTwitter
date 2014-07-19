@@ -16,7 +16,17 @@
 			print $string.PHP_EOL;
 		}
 
-		public static function LoadingBar($second) {
-			
+		public static function getStdInNumber($string) {
+			while(true) {
+				self::Put($string);
+				$line = trim(fgets(STDIN));
+				if($line === "q") {
+					exit("終了します。\n");
+				}
+				if((preg_match("/^[0-9]+$/",$line) && (0 < $line && $line <= 10))) {
+					return $line;
+					break;
+				}
+			}
 		}
 	}

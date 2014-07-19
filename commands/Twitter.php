@@ -8,7 +8,9 @@
 		CONST HOME_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/home_timeline.json";
 		CONST USER_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/user_timeline.json";
 		CONST MENTION_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/mentions_timeline.json";
+
 		CONST HASH_TIMELINE_TO_JSON		= "https://api.twitter.com/1.1/search/tweets.json";
+		CONST TREND_WORDS_TO_JSON		= "https://api.twitter.com/1.1/trends/place.json?id=23424856";
 
 		public function __construct($setting,$config) {
 			include 'Terminal.php';
@@ -35,19 +37,21 @@
 
 		public function getRateLimit() {
 
-			$requestJson = $this->getRequest(self::RATE_LIMIT_STATUS_TO_JSON,"GET",array("resources"=>"search,statuses"));
+			$requestJson = $this->getRequest(self::RATE_LIMIT_STATUS_TO_JSON,"GET",array("resources"=>"search,statuses,trends"));
 			$requestObj = json_decode($requestJson);
 
 			$mention = $requestObj->resources->statuses->{'/statuses/mentions_timeline'};
 			$home    = $requestObj->resources->statuses->{'/statuses/home_timeline'};
 			$user    = $requestObj->resources->statuses->{'/statuses/user_timeline'};
 			$search  = $requestObj->resources->search->{'/search/tweets'};
+			$trends  = $requestObj->resources->trends->{'/trends/place'};
 
 			return (object)array(
 				'mention'=>self::parseLimit($mention),
 				'user'=>self::parseLimit($user),
 				'home'=>self::parseLimit($home),
-				'search'=>self::parseLimit($search)
+				'search'=>self::parseLimit($search),
+				'trends'=>self::parseLimit($trends)
 			);
 		}
 

@@ -23,15 +23,15 @@
 	/*
 	 *	引数取得(引数無しで自タイムライン表示)
 	 *	
-	 *	-help 				へるぷ表示
-	 *	-t"[user_id]" 		タイムライン表示(デフォルトで自タイムライン)
-	 *	-m 					メンション表示
-	 * 	-f 					フィルター(未実装)
-	 *  -h"[hash1],[hash1]"	ハッシュ検索
-	 * 	-d[second] 			ディレイ設定(デフォルトで60秒)
+	 *	-H --help 							へるぷ表示
+	 *	-u[user_id] --user[user_id] 		タイムライン表示(デフォルトで自タイムライン)
+	 *	-m --mention						メンション表示
+	 *  -h[hash] --hash[hash]				ハッシュ検索
+	 * 	-t --trend							トレンド
+	 * 	-d[second] 							ディレイ設定(デフォルトで60秒)
 	 */
 
-	$opt = getopt('t::m::f::d::h::help::');
+	$opt = getopt('u::m::f::d::h::H::t::',array('help::','user::','mention::','hash::','trend::'));
 
 	$INST = new Commands($opt,$config);
 	$INST->execute();
