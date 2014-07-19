@@ -1,11 +1,17 @@
 <?php
 	class Location extends TwitterAPI {
+		protected $geoObject;
+		public function __construct() {
+			parent::__construct();
+			Terminal::Put("位置情報解析中です、暫くお待ち下さい。");
+			Terminal::Mes("位置情報解析中です、暫くお待ち下さい。");
+			$this->geoObject = self::getGeocode();
+		}
+
 		public function get() {
 			try {
-				Terminal::Put("位置情報解析中です、暫くお待ち下さい。");
-				Terminal::Mes("位置情報解析中です、暫くお待ち下さい。");
-				$geoObject = self::getGeocode();
-				$requestJson = $this->getRequest(self::HASH_TIMELINE_TO_JSON,"GET",array("count"=>COUNT,"include_rts"=>false,"q"=>"","geocode"=>implode(",",$geoObject)));
+				
+				$requestJson = $this->getRequest(self::HASH_TIMELINE_TO_JSON,"GET",array("count"=>COUNT,"include_rts"=>false,"q"=>"","geocode"=>implode(",",$this->geoObject)));
 				$requestObj = json_decode($requestJson);
 				$flag = FALSE;
 				if($requestObj) {
