@@ -47,9 +47,15 @@
 					'filter'=>NULL,
 					'delay'=>(isset($option['d'])) ? $option['d'] : DEFAULT_DELAY
 				];
-			} elseif(self::margenalOption('l','location',$option)) {
+			} elseif(self::margenalOption('g','geometory',$option)) { //GEOタグ検索表示
 				return [
-					'action'=>'Location',
+					'action'=>'Geometory',
+					'filter'=>NULL,
+					'delay'=>(isset($option['d'])) ? $option['d'] : DEFAULT_DELAY
+				];
+			} elseif(self::margenalOption('l','list',$option)) { //リスト選択表示
+				return [
+					'action'=>'Lists',
 					'filter'=>NULL,
 					'delay'=>(isset($option['d'])) ? $option['d'] : DEFAULT_DELAY
 				];

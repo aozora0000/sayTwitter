@@ -1,10 +1,14 @@
 # sayTwitter
 - script:         :        sayTwitter
-- version         :        0.1.2
+- version         :        0.1.3
 - auther          :        J山B作(@aozora0000)
 - special thanks  :        [twitteroauth](https://github.com/abraham/twitteroauth)
 
 ## 更新履歴
+
+### 2014-07-20
+- リスト選択表示機能追加
+- 位置情報検索機能のオプションを-l(--location)から-g(--geometory)に変更
 
 ### 2014-07-20
 - 位置情報検索機能追加
@@ -31,7 +35,8 @@
     -m                または --mention               メンション表示
     -h="#example"     または --hash="#example"       ハッシュタグ表示
     -t                または --trend                 トレンド選択表示
-    -l                または --location              位置情報検索表示
+    -g                または --geometory             位置情報検索表示
+    -l                または --list                  リスト選択表示
 ```
 ### その他オプション
 ```

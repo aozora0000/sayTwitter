@@ -32,7 +32,7 @@
 	 * 	-d[second] 							ディレイ設定(デフォルトで60秒)
 	 */
 
-	$opt = getopt('u::m::f::d::h::H::t::l::',array('help::','user::','mention::','hash::','trend::','location::'));
+	$opt = getopt('u::m::f::d::h::H::t::g::l::',array('help::','user::','mention::','hash::','trend::','geometory::','list::'));
 
 	$INST = new Commands($opt,$config);
 	$INST->execute();

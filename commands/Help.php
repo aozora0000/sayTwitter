@@ -4,7 +4,7 @@
             print <<< EOM
 
 script          :        sayTwitter
-version         :        0.1.1
+version         :        0.1.3
 auther          :        J山B作(@aozora0000)
 special thanks  :        https://github.com/abraham/twitteroauth (TwitterAPI1.1 Oauth&RESTAPI Liblaries)
 howto           :
@@ -15,6 +15,8 @@ howto           :
     -m                または --mention               メンション表示
     -h="#example"     または --hash="#example"       ハッシュタグ表示
     -t                または --trend                 トレンド選択表示
+    -g                または --geometory             位置情報検索表示
+    -l                または --list                  リスト選択表示
 
 その他オプション
     --help                                           へるぷ表示

@@ -10,6 +10,10 @@
 		CONST MENTION_TIMELINE_TO_JSON 	= "https://api.twitter.com/1.1/statuses/mentions_timeline.json";
 		CONST HASH_TIMELINE_TO_JSON		= "https://api.twitter.com/1.1/search/tweets.json";
 		CONST TREND_WORDS_TO_JSON		= "https://api.twitter.com/1.1/trends/place.json?id=23424856";
+		CONST GET_LISTS_TO_JSON			= "https://api.twitter.com/1.1/lists/list.json";
+		CONST SHOW_LIST_TO_JSON 		= "https://api.twitter.com/1.1/lists/statuses.json";
+
+
 		CONST GET_GLOBALIP_TO_JSON		= "http://api.hostip.info/get_json.php";
 		CONST GET_GEOLOCATION_TO_JSON	= "http://ip-json.rhcloud.com/json/%s"; // %sにIPを入れる
 
@@ -41,7 +45,7 @@
 
 		public function getRateLimit() {
 
-			$requestJson = $this->getRequest(self::RATE_LIMIT_STATUS_TO_JSON,"GET",array("resources"=>"search,statuses,trends"));
+			$requestJson = $this->getRequest(self::RATE_LIMIT_STATUS_TO_JSON,"GET",array("resources"=>"search,statuses,trends,lists"));
 			$requestObj = json_decode($requestJson);
 
 			$mention = $requestObj->resources->statuses->{'/statuses/mentions_timeline'};
@@ -49,13 +53,15 @@
 			$user    = $requestObj->resources->statuses->{'/statuses/user_timeline'};
 			$search  = $requestObj->resources->search->{'/search/tweets'};
 			$trends  = $requestObj->resources->trends->{'/trends/place'};
+			$lists  =  $requestObj->resources->lists->{'/lists/statuses'};
 
 			return (object)array(
 				'mention'=>self::parseLimit($mention),
 				'user'=>self::parseLimit($user),
 				'home'=>self::parseLimit($home),
 				'search'=>self::parseLimit($search),
-				'trends'=>self::parseLimit($trends)
+				'trends'=>self::parseLimit($trends),
+				'lists'=>self::parseLimit($lists),
 			);
 		}
 

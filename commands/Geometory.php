@@ -1,5 +1,5 @@
 <?php
-	class Location extends TwitterAPI {
+	class Geometory extends TwitterAPI {
 		protected $geoObject;
 
 		public function preprocess() {
@@ -34,7 +34,7 @@
 				}
 			} catch(Exception $e) {
 				Terminal::Put("エラー発生！処理を終了します。\n{$e->getMessage()}");
-				Terminal::Mes("エラー発生！処理を終了します。{$e->getMessage()}");
+				Terminal::Mes("エラー発生！処`理を終了します。{$e->getMessage()}");
 			}
 		}
 
