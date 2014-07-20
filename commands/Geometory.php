@@ -5,7 +5,12 @@
 		public function preprocess() {
 			Terminal::Put("位置情報解析中です、暫くお待ち下さい。");
 			Terminal::Mes("位置情報解析中です、暫くお待ち下さい。");
-			$this->geoObject = self::getGeocode();
+			try {
+				$this->geoObject = self::getGeocode();
+			} catch(Exception $e) {
+				Terminal::Put("エラー発生！処理を終了します。\n{$e->getMessage()}");
+				Terminal::Mes("エラー発生！処理を終了します。{$e->getMessage()}");
+			}
 		}
 
 		public function get() {
@@ -34,7 +39,7 @@
 				}
 			} catch(Exception $e) {
 				Terminal::Put("エラー発生！処理を終了します。\n{$e->getMessage()}");
-				Terminal::Mes("エラー発生！処`理を終了します。{$e->getMessage()}");
+				Terminal::Mes("エラー発生！処理を終了します。{$e->getMessage()}");
 			}
 		}
 
